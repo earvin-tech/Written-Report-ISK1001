@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Version Control &amp; Testing Evaluation</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="version-control--testing-evaluation">Version Control &amp; Testing Evaluation</h1>
+<h2 id="overview">Overview</h2>
+<p>This report outlines some version control systems widely used by developers in the industry, it will highlight two specific version control systems Git and Mercurial. Use of Git will also be demonstrated in its use in one of my past projects; The personal library app.</p>
+<p>This report also includes an analysis of test-driven development and once again will be demonstrated in the Personal Library App.</p>
+<h2 id="what-is-git">What is Git?</h2>
+<p>Git is a version control system that tracks changes in in files of a particular directory known as a 'repository'. A repository is created when you choose to initialise a directory into one.</p>
+<p>There are three main stages a directory can have when using git. That is the working tree, staging area, and the repository. There are also two types of repository, a local repository and remote repository. The local repository is a repository in the local machine whereas the remote repository is saved in a platform such as GitHub or Bitbucket.</p>
+<p>The first step in any project utilising Git is to initialise a directory into a repository. You can do this by entering in your terminal the command: <code>git init</code>. After this any changes in files in the directory will be tracked.</p>
+<p>Any changes in a repository will be tracked however to 'commit' a change it must first be staged. We can stage files and their changes by entering the command <code>git add [FILENAME]</code>.</p>
+<p>After files have been staged they are ready to be committed. You can do this by entering <code>git commit</code>, this will open up an editor such as vim, if you would like to not open an editor it would be easier to add a commit message directly like this: <code>git commit -m &quot;[MESSAGE]&quot;</code>. After committing all changes or modifications in the added in the staging area will be committed.</p>
+<p>For collaborative projects it is useful to 'push' commits to a remote repository. This allows the project to be updated in real time with many other collaborators. Pushing commits to a remote repository are also a good way to back-up work in the event your device is unavailable. To push a commit from a local repository to a remote one on a platform such as GitHub we use the command: <code>git push</code>.</p>
+<h3 id="github">GitHub</h3>
+<p>GitHub is an online platform that allows developers to collaborate on projects. It tracks a project in what is called a repository. Code is committed from a local repository to a remote repository on GitHub where collaborators can all contribute and access the code.</p>
+<p>One unique feature of GitHub is its issue tracking that allows developers to highlight features that need fixing in a project. It allows projects that have multiple collaborators to comment on certain parts of code that needs work and delegate the work accordingly.</p>
+<h2 id="what-is-mercurial">What is Mercurial?</h2>
+<p>Just like Git, Mercurial is also a version control system. It's very similar to Git having a repository track changes within it through commits.</p>
+<p>Here is some of the basic commands explained above with Git but in Mercurial syntax:</p>
+<ul>
+<li>Initialising repository: <code>hg init</code></li>
+<li>Adding files (to be tracked): <code>hg add</code></li>
+<li>Committing: <code>hg commit</code></li>
+<li>Pushing: <code>hg push</code></li>
+</ul>
+<p>Both Git and Mercurial are free and open source with both having A GNU license. As both are very accessible many developers will choose one of these two as their version control system.</p>
+<p>However one difference from Git is the lack of a 'staging area'. This is a disadvantage for separating work as developers cannot pick and choose which changes to commit now or later. All changes must be committed at the same time.</p>
+<p>Another major difference between Git and Mercurial is the branching and merging structure. Git allows there to be multiple independent local branches of a repository. Creation, merging, deletion of these lines can be done very quickly. In Mercurial branching is more complex. Branches in Mercurial require its own directory. This makes branching in Mercurial much harder.</p>
+<p>Though both Git and Mercurial are popular many platforms prefer to host Git over Mercurial. Many platforms have dropped support for Mercurial over the years. BitBucket dropped support for Mercurial and Mercurial repositories were removed in 2020.</p>
+<h2 id="usage-of-git-and-github-in-my-own-project">Usage of Git and GitHub in my own project.</h2>
+<p>In a recent project of mine I opted to use Git as my version control system. It allowed me to efficiently track my progress as I implemented individual functions of the app I was creating. I utilised the pushing of commits to a remote repository on GitHub. This tracked any changes in my code to help me review it later to see if I was missing any functionality in my app.</p>
+<p>Below is an image of some commits I made to track my work:</p>
+<p><img src="file:///c:\Users\Earvin Tumpao\JUL2024\Assignments\ISK-written report\images\commit_img1.png" alt="List of some commits made in the Personal Library App">
+These are snapshots of certain points in my project.</p>
+<p><img src="file:///c:\Users\Earvin Tumpao\JUL2024\Assignments\ISK-written report\images\commit_img2.png" alt="A specific commit">
+A specific commit. One that added implementation of the 'add bookshelf' function.</p>
+<p>I did not use enough of other features which could have been useful such as branching which could have allowed me to work on different parts of the app if I got stuck on one part and then merged the branches into the main branch once completed. It would have helped with time management, whereas my method of working on one functionality at a time made progress flat at times. I had no use for forking the repository or cloning it as I only worked on one device and did not have any collaborators.</p>
+<p>Another feature that I could have explored was issue raising, though it is more often used in collaborative projects to highlight issues to be fixed in code, it would have allowed me to separate my work into pieces.</p>
+<h2 id="manual-testing-and-automated-testing">Manual testing and Automated testing</h2>
+<h3 id="manual-testing">Manual Testing</h3>
+<p>Manual Testing is done physically by a person by interacting with the software and appropriate APIs. It is more prone to error as it has the potential for human made errors such as typos, or lack of understanding of what exactly must be tested.</p>
+<h3 id="automated-testing">Automated Testing</h3>
+<p>Automated testing is done by a machine that executes a pre-written test script. Errors still may occur if the test script is written incorrectly, or if some test outcomes are not taken into consideration.</p>
+<h2 id="integration-testing-and-unit-testing">Integration Testing and Unit Testing</h2>
+<h3 id="unit-testing">Unit Testing</h3>
+<p>Unit testing is very small scale. It is done to test individual methods, classes, components or, modules. An important factor of unit testing is to make sure it tests the smallest possible piece of code that can be isolated in a system. This is because if it relies on an external system such as a database, it no longer is a unit test but rather an integration test.</p>
+<h3 id="integration-testing">Integration Testing</h3>
+<p>Integration testing is the testing of modules or services of a software working together. This can test for connection to a database, or different methods found in other modules being accessed by each other and working.</p>
+<h2 id="test-driven-development">Test-driven development</h2>
+<p>Test-driven development puts an emphasis on writing tests first and then writing and adjusting accordingly the application code. This allows a lessened work load.</p>
+<p>Many developers might struggle with the concept of test-driven development because it's a contrary mindset to what most are used to, it seems like working backwards. Writing tests first and only after writing code to pass the tests seems like tedious work. Though in reality this can save a lot of time, to have the functionality planned and documented and to have plan for outcomes, pass or fail.</p>
+<h2 id="test-driven-development-in-my-own-project">Test-driven development in my own project.</h2>
+<p>Test-driven development was used in my project loosely and not with much detail and thought in the testing. It would have been better if I had detailed the tests more before writing application code. Because the tests were not as detailed a possible some tests did not account for every outcome and errors were missed and not even considered.</p>
+<p>The two main tests I had used in my project: The Personal Library App were the unit testing and integration testing. I will highlight these two test methods with various functions of the app.</p>
+<p>The unit tests run will be testing the methods of a certain class, to check if they retrieve or set the data as intended.</p>
+<p><img src="file:///c:\Users\Earvin Tumpao\JUL2024\Assignments\ISK-written report\images\unit_testing1.png" alt="Methods to be tested">
+The methods to be tested are 'get_name', 'add_book_to_bookshelf', 'get_book_list' and 'get_books'. These methods are used in other functions in the project to retrieve or set information the user has input.</p>
+<p>We can also test the constructor function and str function to check if they work.</p>
+<p><img src="file:///c:\Users\Earvin Tumpao\JUL2024\Assignments\ISK-written report\images\unit_testing2.png" alt="Results of tests">
+The results of the unit tests of the methods in the Bookshelf class are as above. The constructor function and str function has appeared to work as it stored the name of the defined bookshelf correctly as stated in the definition of the str function. The 'get name' method has also worked as it has output the name of the defined bookshelf 'Fantasy' correctly.</p>
+<p>However the test fails with the 'add book to bookshelf' and possibly the 'get books' method. Though we attempted to add a book to the bookshelf it has not output it when we requested to retrieve the book list of the bookshelf. This means we must modify the application code of one or both of these methods, either the book was not appended in the book list by the 'add book to bookshelf' method of the bookshelf or the getter method 'get books' is not working.</p>
+<p>Next we will be undergoing integration testing. In this example we will be testing the 'Add book' function. This function is to add a book to the library. At the same time the 'list all books' function will be tested so we can see the results of the 'add book' function. This will be considered an integration test as it tests to see not only single methods and classes but external modules and file handling methods utilising JSON files.</p>
+<p>Below is the functions and modules to be tested for the integration test:
+<img src="file:///c:\Users\Earvin Tumpao\JUL2024\Assignments\ISK-written report\images\integration_testing_1B.png" alt="Add book function">
+<img src="file:///c:\Users\Earvin Tumpao\JUL2024\Assignments\ISK-written report\images\integration_testing_1A%20(1).png" alt="List books function"></p>
+<p>When testing the two functions 'add book' and 'list all books' it tests the output of multiple methods working together as well as the file functions that are utilised by JSON which will be demonstrated shortly.</p>
+<pre><code class="language-py"><span class="hljs-keyword">import</span> json
+
+<span class="hljs-keyword">from</span> classes.bookshelf <span class="hljs-keyword">import</span> Bookshelf
+<span class="hljs-keyword">from</span> classes.fiction_book <span class="hljs-keyword">import</span> FictionBook
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">save_and_exit</span>(<span class="hljs-params">library</span>):
+    json_to_write1 = []
+    <span class="hljs-keyword">for</span> bookshelf <span class="hljs-keyword">in</span> library.get_all_bookshelves():
+            <span class="hljs-keyword">if</span> bookshelf.get_books():
+                i = <span class="hljs-number">0</span>
+                <span class="hljs-keyword">for</span> book <span class="hljs-keyword">in</span> bookshelf.get_book_list():
+                    bookshelf_json = {
+                        <span class="hljs-string">&quot;bookshelf_name&quot;</span>: bookshelf.get_name(),
+                        <span class="hljs-string">f&quot;book<span class="hljs-subst">{i}</span>&quot;</span>: {
+                            <span class="hljs-string">f&quot;title<span class="hljs-subst">{i}</span>&quot;</span>: book.get_title(),
+                            <span class="hljs-string">f&quot;author<span class="hljs-subst">{i}</span>&quot;</span>: book.get_author(),
+                            <span class="hljs-string">f&quot;rating<span class="hljs-subst">{i}</span>&quot;</span>: book.get_rating(),
+                            <span class="hljs-string">f&quot;genre<span class="hljs-subst">{i}</span>&quot;</span>: book.get_genre()
+                        }
+                }
+                
+            <span class="hljs-keyword">else</span>: 
+                bookshelf_json = {
+                    <span class="hljs-string">&quot;bookshelf_name&quot;</span>: bookshelf.get_name()
+                }
+
+            json_to_write1.append(bookshelf_json)
+    
+    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;data/library.json&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>) <span class="hljs-keyword">as</span> json_file1:
+        json.dump(json_to_write1, json_file1, indent=<span class="hljs-number">4</span>)
+
+    json_to_write2 = []
+    <span class="hljs-keyword">for</span> book <span class="hljs-keyword">in</span> library.get_all_books():
+        <span class="hljs-keyword">if</span> book.get_genre():
+            books_json = {
+            <span class="hljs-string">&quot;title_book&quot;</span>: book.get_title(),
+            <span class="hljs-string">&quot;author_book&quot;</span>: book.get_author(),
+            <span class="hljs-string">&quot;rating_book&quot;</span>: book.get_rating(),
+            <span class="hljs-string">&quot;genre&quot;</span>: book.get_genre()
+        }
+        <span class="hljs-keyword">elif</span> book.get_research_topic():
+            books_json = {
+            <span class="hljs-string">&quot;title_book&quot;</span>: book.get_title(),
+            <span class="hljs-string">&quot;author_book&quot;</span>: book.get_author(),
+            <span class="hljs-string">&quot;rating_book&quot;</span>: book.get_rating(),
+            <span class="hljs-string">&quot;research_topic&quot;</span>: book.get_research_topic()
+        }
+        json_to_write2.append(books_json)
+
+    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;data/books.json&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>) <span class="hljs-keyword">as</span> json_file2:
+        json.dump(json_to_write2, json_file2, indent=<span class="hljs-number">4</span>)
+        
+        
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">load_from_file</span>(<span class="hljs-params">library</span>):
+    <span class="hljs-keyword">try</span>:
+        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;data/library.json&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>) <span class="hljs-keyword">as</span> json_file1:
+            json_to_load1 = json.load(json_file1)
+
+        <span class="hljs-keyword">for</span> bookshelf <span class="hljs-keyword">in</span> json_to_load1:
+            bookshelf = Bookshelf(bookshelf[<span class="hljs-string">&quot;bookshelf_name&quot;</span>])
+            <span class="hljs-keyword">if</span> bookshelf.get_books():
+                i = <span class="hljs-number">0</span>
+                <span class="hljs-keyword">for</span> book <span class="hljs-keyword">in</span> bookshelf.get_books():
+                    book = FictionBook(<span class="hljs-string">f&quot;title<span class="hljs-subst">{i}</span>&quot;</span>, <span class="hljs-string">f&quot;author<span class="hljs-subst">{i}</span>&quot;</span>,<span class="hljs-string">f&quot;rating<span class="hljs-subst">{i}</span>&quot;</span>, <span class="hljs-string">f&quot;genre<span class="hljs-subst">{i}</span>&quot;</span>)
+                    bookshelf.add_new_book_to_bookshelf(book)
+                    i += <span class="hljs-number">1</span>
+            
+            library.add_bookshelf(bookshelf)
+
+    <span class="hljs-keyword">except</span> FileNotFoundError:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;The file does not exist&quot;</span>)
+
+    <span class="hljs-keyword">try</span>:
+        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;data/books.json&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>) <span class="hljs-keyword">as</span> json_file2:
+            json_to_load2 = json.load(json_file2)
+        
+        <span class="hljs-keyword">for</span> book <span class="hljs-keyword">in</span> json_to_load2:
+            <span class="hljs-keyword">if</span> book[<span class="hljs-string">&quot;genre&quot;</span>]:
+                book = FictionBook(book[<span class="hljs-string">&quot;title_book&quot;</span>],book[<span class="hljs-string">&quot;author_book&quot;</span>], book[<span class="hljs-string">&quot;rating_book&quot;</span>], book[<span class="hljs-string">&quot;genre&quot;</span>])
+            library.add_book(book)
+    
+    <span class="hljs-keyword">except</span> FileNotFoundError:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;File does not exist&quot;</span>)
+</code></pre>
+<p>These functions are file functions which utilise JSON.</p>
+<p>These functions allow data to be persistent when closing and opening the app. The following integration tests will be able to test if the JSON and other external modules are working properly.</p>
+<p><img src="file:///c:\Users\Earvin Tumpao\JUL2024\Assignments\ISK-written report\images\Screenshot%20(35).png" alt="Integration test">
+This is an integration test, by adding two books to the library we will see if the different modules all work together. The add book functions seems to work well storing the data input by the user.</p>
+<p><img src="file:///c:\Users\Earvin Tumpao\JUL2024\Assignments\ISK-written report\images\Screenshot%20(37).png" alt="List books function">
+When we employ the list books function and we see the books we input are listed and these functions work together as intended.</p>
+<p><img src="file:///c:\Users\Earvin Tumpao\JUL2024\Assignments\ISK-written report\images\Screenshot%20(36).png" alt="JSON integration">
+Here we see that the books we input have been stored in a JSON file as intended.</p>
+<h2 id="references">References</h2>
+<ul>
+<li>Achilleas Pipinellis (2018). GitHub essentials : unleash the power of collaborative development workflows using GitHub. Burmingham, U.K., Packt Publishing Limited.</li>
+<li>Chacon, S. and Straub, B. (2014). Pro Git. [online] Berkeley, Ca: Apress. Available at: <a href="https://git-scm.com/book/en/v2">https://git-scm.com/book/en/v2</a>.</li>
+<li><a href="http://git-scm.com">git-scm.com</a>. (n.d.). About - Git. [online] Available at: <a href="https://git-scm.com/about/branching-and-merging">https://git-scm.com/about/branching-and-merging</a>.</li>
+<li><a href="http://git-scm.com">git-scm.com</a>. (n.d.). About - Git. [online] Available at: <a href="https://git-scm.com/about/staging-area">https://git-scm.com/about/staging-area</a>.</li>
+<li>Juviler, J. (2022). What Is GitHub? (And What Is It Used For?). [online] <a href="http://blog.hubspot.com">blog.hubspot.com</a>. Available at: <a href="https://blog.hubspot.com/website/what-is-github-used-for#what-github">https://blog.hubspot.com/website/what-is-github-used-for#what-github</a>.</li>
+<li>O’Sullivan, B. (2009). Mercurial: The Definitive Guide. ‘O’Reilly Media, Inc.’</li>
+<li>Pittet, S. (2019). The different types of testing in Software. [online] Atlassian. Available at: <a href="https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing">https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing</a>.</li>
+<li>QualityLogic. (2024). A Closer Look at Integration Testing. [online] Available at: <a href="https://www.qualitylogic.com/knowledge-center/closer-look-integration-testing/">https://www.qualitylogic.com/knowledge-center/closer-look-integration-testing/</a>.</li>
+<li><a href="http://Soundsoftware.ac.uk">Soundsoftware.ac.uk</a>. (2014). What’s the difference between Mercurial and git? | Sound Software .ac.uk. [online] Available at: <a href="http://soundsoftware.ac.uk/whats-the-difference-between-hg-and-git">http://soundsoftware.ac.uk/whats-the-difference-between-hg-and-git</a> [Accessed 27 Oct. 2024].</li>
+<li>Sruthy (2007). Types of Software Testing: Different Testing Types with Details. [online] Software Testing Help. Available at: <a href="https://www.softwaretestinghelp.com/types-of-software-testing/#1_Unit_Testing">https://www.softwaretestinghelp.com/types-of-software-testing/#1_Unit_Testing</a>.</li>
+<li><a href="http://www.mercurial-scm.org">www.mercurial-scm.org</a>. (n.d.). Mercurial SCM. [online] Available at: <a href="https://www.mercurial-scm.org/guide">https://www.mercurial-scm.org/guide</a>.</li>
+</ul>
+<p>Link to project referenced: Personal Library App -&gt; <a href="https://github.com/earvin-tech/Assignment-Terminal-App">Link to repo.</a></p>
+
+            
+            
+        </body>
+        </html>
